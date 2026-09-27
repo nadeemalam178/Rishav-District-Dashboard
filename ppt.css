@@ -1,0 +1,379 @@
+/* ============================================================
+   Jan Suraaj Party — Magadh Zone
+   A4 Landscape Print-Ready Stylesheet
+   Screen view: every slide is exactly A4 landscape (297×210mm)
+   ============================================================ */
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Outfit:wght@700;800&display=swap');
+
+:root {
+  --font-body: "Inter", system-ui, sans-serif;
+  --font-disp: "Outfit", "Inter", sans-serif;
+
+  /* A4 landscape at 96dpi: 297mm = ~1122px, 210mm = ~794px */
+  --a4-w: 1122px;
+  --a4-h: 794px;
+
+  --brand:    #D97706;
+  --brand-dk: #92400E;
+
+  --text-main: #111827;
+  --text-muted:#6B7280;
+  --text-soft: #374151;
+
+  --bg-page:  #E5E7EB;
+  --bg-card:  #FFFFFF;
+  --border:   #E5E7EB;
+  --border-md:#D1D5DB;
+}
+
+/* ── Reset ─────────────────────────────────────────────────────────────────── */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+body { font-family: var(--font-body); color: var(--text-main); background: var(--bg-page); }
+
+/* ── Screen toolbar (hidden in print) ──────────────────────────────────────── */
+.screen-toolbar {
+  position: sticky; top: 0; z-index: 200;
+  background: #1F2937;
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 0.6rem 1.5rem;
+  box-shadow: 0 2px 8px rgba(0,0,0,.25);
+}
+.toolbar-brand { display: flex; flex-direction: column; }
+.tb-title   { font-weight: 800; font-size: 0.95rem; color: #F9FAFB; }
+.tb-subtitle{ font-size: 0.75rem; color: #9CA3AF; margin-top: 0.1rem; }
+.btn-print  {
+  display: inline-flex; align-items: center; gap: 0.45rem;
+  background: var(--brand); color: #fff; border: none;
+  padding: 0.55rem 1.3rem; border-radius: 6px; font-size: 0.88rem;
+  font-weight: 700; cursor: pointer; font-family: var(--font-body);
+  transition: background 0.15s;
+}
+.btn-print:hover { background: var(--brand-dk); }
+
+/* ── Page Document Viewer ───────────────────────────────────────────────────── */
+#ppt-slides-stage {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2rem;
+  padding: 2rem 1rem;
+  background: var(--bg-page);
+  min-height: 100vh;
+}
+
+/* ── Each Slide = 1 A4 Landscape Page ──────────────────────────────────────── */
+.slide {
+  width: var(--a4-w);
+  height: var(--a4-h);
+  background: #FFFFFF;
+  box-shadow: 0 4px 20px rgba(0,0,0,.18), 0 1px 4px rgba(0,0,0,.08);
+  border-radius: 4px;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  position: relative;
+  flex-shrink: 0;
+  padding: 28px 36px 20px;
+  gap: 10px;
+}
+
+/* Left accent bar */
+.slide::before {
+  content: "";
+  position: absolute;
+  left: 0; top: 0; bottom: 0; width: 5px;
+  background: linear-gradient(180deg, #D97706 0%, #059669 100%);
+}
+
+/* ── Cover Slide ────────────────────────────────────────────────────────────── */
+.slide-cover {
+  background: linear-gradient(135deg, #FFFBEB 0%, #ECFDF5 55%, #EFF6FF 100%);
+  text-align: center;
+  justify-content: center;
+  align-items: center;
+  gap: 14px;
+}
+.slide-cover::before { display: none; }
+
+.cover-pill {
+  display: inline-flex; align-items: center; gap: 0.4rem;
+  background: rgba(255,255,255,.9); border: 1.5px solid #D1D5DB;
+  padding: 0.28rem 1rem; border-radius: 999px;
+  font-size: 0.73rem; font-weight: 700; color: var(--brand-dk);
+}
+.cover-h1 {
+  font-family: var(--font-disp);
+  font-size: 2.5rem; font-weight: 800;
+  line-height: 1.18; color: var(--text-main);
+}
+.cover-h1 span { color: var(--brand-dk); }
+.cover-sub {
+  font-size: 0.9rem; color: var(--text-muted);
+  max-width: 660px; line-height: 1.55;
+}
+.cover-stats {
+  display: grid; grid-template-columns: repeat(4, 1fr);
+  gap: 10px; width: 100%; max-width: 740px;
+}
+.cs-box {
+  background: #fff; border: 1.5px solid var(--border-md);
+  border-radius: 8px; padding: 12px 8px; text-align: center;
+}
+.cs-num { font-family: var(--font-disp); font-size: 1.65rem; font-weight: 800; color: var(--brand-dk); line-height: 1; }
+.cs-lbl { font-size: 0.7rem; color: var(--text-muted); margin-top: 4px; font-weight: 600; }
+.cover-note { font-size: 0.72rem; color: var(--text-muted); font-style: italic; }
+
+/* ── Slide Header ───────────────────────────────────────────────────────────── */
+.slide-hdr {
+  display: flex; justify-content: space-between; align-items: flex-start;
+  border-bottom: 1.5px solid var(--border); padding-bottom: 8px;
+  flex-shrink: 0;
+}
+.crumb {
+  font-size: 0.68rem; font-weight: 700;
+  text-transform: uppercase; letter-spacing: 0.06em;
+  color: var(--brand); margin-bottom: 2px;
+}
+.slide-h2 {
+  font-family: var(--font-disp);
+  font-size: 1.25rem; font-weight: 800; color: var(--text-main); line-height: 1.25;
+}
+.sc-sup {
+  font-size: 0.6rem; font-weight: 800;
+  background: #7C3AED; color: #fff;
+  padding: 0.08rem 0.3rem; border-radius: 3px;
+  vertical-align: middle; margin-left: 0.25rem;
+}
+.ac-seq {
+  font-size: 0.75rem; font-weight: 600;
+  color: var(--text-muted); margin-left: 0.4rem;
+}
+.page-tag {
+  font-size: 0.65rem; font-weight: 700; color: var(--text-muted);
+  background: #F3F4F6; border: 1px solid var(--border-md);
+  padding: 0.18rem 0.55rem; border-radius: 4px; white-space: nowrap;
+}
+
+/* ── Two-column main area ───────────────────────────────────────────────────── */
+.two-col {
+  display: grid; grid-template-columns: 1fr 1fr;
+  gap: 12px; flex: 1; min-height: 0;
+}
+.panel {
+  background: #F9FAFB; border: 1px solid var(--border-md);
+  border-radius: 7px; padding: 10px 12px;
+  display: flex; flex-direction: column; gap: 6px;
+  min-height: 0; overflow: hidden;
+}
+.panel-title {
+  font-weight: 800; font-size: 0.72rem;
+  text-transform: uppercase; letter-spacing: 0.04em;
+  color: var(--text-muted); display: flex; align-items: center; gap: 0.3rem;
+  flex-shrink: 0;
+}
+.panel-desc { font-size: 0.73rem; color: var(--text-soft); line-height: 1.4; }
+
+/* ── AC List ────────────────────────────────────────────────────────────────── */
+.ac-list { display: flex; flex-direction: column; gap: 4px; overflow: hidden; }
+.ac-row  { display: flex; align-items: center; gap: 6px; font-size: 0.72rem; }
+.ac-num  { width: 16px; height: 16px; background: var(--brand); color:#fff; border-radius: 50%; display:flex; align-items:center; justify-content:center; font-size:0.6rem; font-weight:800; flex-shrink:0; }
+.ac-nm   { font-weight: 700; color: var(--text-main); flex: 1; }
+.ac-cand { color: var(--text-muted); font-size: 0.67rem; }
+
+/* ── Caste Stack (District cover) ───────────────────────────────────────────── */
+.caste-stack { display: flex; flex-direction: column; gap: 5px; overflow: hidden; }
+.caste-group { padding: 5px 7px; border-radius: 0 5px 5px 0; background: #fff; flex-shrink: 0; }
+.cg-hdr      { display: flex; justify-content: space-between; align-items: center; margin-bottom: 3px; }
+.cg-name     { font-weight: 800; font-size: 0.72rem; }
+.cg-pct      { font-size: 0.65rem; font-weight: 800; padding: 0.08rem 0.4rem; border-radius: 999px; }
+.cg-subs     { display: flex; flex-wrap: wrap; gap: 3px; }
+.sub-chip    { font-size: 0.62rem; background: #F3F4F6; border: 1px solid var(--border); padding: 1px 5px; border-radius: 3px; color: var(--text-soft); }
+
+/* ── Zone Overview Hub ──────────────────────────────────────────────────────── */
+.hub-grid { display: grid; grid-template-columns: repeat(2,1fr); gap: 10px; flex: 1; min-height: 0; }
+.hub-card { background: #F9FAFB; border: 1px solid var(--border-md); border-radius: 7px; padding: 10px 12px; }
+.hub-top  { display: flex; justify-content: space-between; align-items: center; margin-bottom: 5px; }
+.hub-dist { font-weight: 800; font-size: 0.92rem; }
+.hub-badge{ font-size: 0.67rem; font-weight: 800; padding: 2px 8px; border-radius: 999px; }
+.hub-desc { font-size: 0.73rem; color: var(--text-soft); line-height: 1.4; margin-bottom: 5px; }
+.hub-hl   { font-size: 0.7rem; font-weight: 600; color: var(--text-muted); }
+.hub-hl i { color: var(--brand); margin-right: 3px; }
+
+/* ── Leadership Grid (3×4) ──────────────────────────────────────────────────── */
+.leaders-grid {
+  display: grid; grid-template-columns: repeat(3,1fr);
+  gap: 7px; flex: 1; min-height: 0;
+}
+.leader-card {
+  display: flex; align-items: center; gap: 8px;
+  background: #F9FAFB; border: 1px solid var(--border-md);
+  border-radius: 7px; padding: 8px 10px;
+}
+.l-avatar { width: 34px; height: 34px; border-radius: 50%; display:flex; align-items:center; justify-content:center; color:#fff; font-weight:800; font-size:0.82rem; flex-shrink:0; }
+.l-info   { min-width: 0; }
+.l-name   { font-weight: 700; font-size: 0.76rem; color: var(--text-main); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.l-post   { font-size: 0.66rem; color: var(--text-muted); margin: 1px 0; line-height: 1.3; }
+.l-meta   { font-size: 0.62rem; color: var(--text-muted); }
+.l-meta i { font-size: 0.58rem; margin-right: 2px; }
+
+/* ── Election Result Boxes ──────────────────────────────────────────────────── */
+.result-box {
+  border: 1px solid var(--border-md); border-radius: 7px;
+  padding: 8px 10px; background: #fff; flex-shrink: 0;
+}
+.winner-box { border-top: 3px solid #059669; }
+.runner-box { border-top: 3px solid #D97706; }
+.rb-header  { display: flex; align-items: center; gap: 5px; margin-bottom: 4px; }
+.rb-tag     { font-size: 0.6rem; font-weight: 800; padding: 2px 5px; border-radius: 4px; text-transform: uppercase; letter-spacing: 0.04em; }
+.winner-tag { background: #DCFCE7; color: #166534; }
+.runner-tag { background: #FEF3C7; color: #92400E; }
+.rb-name    { font-weight: 800; font-size: 0.9rem; color: var(--text-main); margin-bottom: 3px; }
+.rb-row     { display: flex; justify-content: space-between; font-size: 0.7rem; color: var(--text-soft); margin-bottom: 2px; }
+.rb-margin  { font-weight: 700; color: #059669; }
+.rb-votes   { font-size: 0.72rem; color: var(--text-muted); }
+.rb-votes b { color: var(--text-main); font-size: 0.82rem; }
+
+.minor-result {
+  display: flex; align-items: center; gap: 5px;
+  padding: 4px 8px; background: #F9FAFB;
+  border: 1px solid var(--border); border-radius: 5px; font-size: 0.68rem;
+  flex-shrink: 0;
+}
+.mr-pos   { width: 20px; font-weight: 800; color: var(--text-muted); }
+.mr-name  { flex: 1; font-weight: 600; }
+.mr-votes { font-weight: 700; color: var(--text-soft); margin-left: auto; }
+
+/* ── JSP Panel ──────────────────────────────────────────────────────────────── */
+.jsp-panel { gap: 6px; }
+.jsp-badge {
+  font-size: 0.65rem; font-weight: 800; text-transform: uppercase;
+  letter-spacing: 0.05em; color: var(--brand-dk);
+  background: #FEF3C7; border: 1px solid #FDE68A;
+  padding: 2px 8px; border-radius: 4px; display: inline-block; width: fit-content;
+  flex-shrink: 0;
+}
+.jsp-name     { font-weight: 800; font-size: 1.05rem; color: var(--text-main); flex-shrink: 0; }
+.jsp-meta-row { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; flex-shrink: 0; }
+.jsp-caste    { font-size: 0.72rem; color: var(--text-soft); font-weight: 600; }
+.jsp-votes-pill {
+  font-size: 0.72rem; font-weight: 800;
+  background: #ECFDF5; color: #065F46; border: 1px solid #A7F3D0;
+  padding: 1px 8px; border-radius: 999px;
+}
+.jsp-pos-bar {
+  font-size: 0.7rem; font-weight: 600;
+  background: #F9FAFB; border: 1px solid var(--border);
+  padding: 3px 8px; border-radius: 5px; color: var(--text-soft); flex-shrink: 0;
+}
+.jsp-pos-bar b { color: var(--text-main); }
+.jsp-phone { font-size: 0.7rem; color: var(--text-muted); flex-shrink: 0; }
+.jsp-phone i { margin-right: 4px; }
+
+.bio-box  { background: #fff; border: 1px solid var(--border); border-radius: 5px; padding: 7px 9px; flex-shrink: 0; }
+.bio-title{ font-size: 0.65rem; font-weight: 700; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.04em; margin-bottom: 4px; }
+.bio-list { list-style: disc; margin-left: 14px; }
+.bio-list li { font-size: 0.68rem; color: var(--text-soft); line-height: 1.45; margin-bottom: 2px; }
+
+/* ── AC Caste Box ───────────────────────────────────────────────────────────── */
+.ac-caste-box   { background: #fff; border: 1px solid var(--border); border-radius: 5px; padding: 7px 9px; flex: 1; min-height: 0; overflow: hidden; }
+.ac-caste-title { font-size: 0.65rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.03em; color: var(--text-muted); margin-bottom: 5px; }
+.voter-count    { font-weight: 600; color: var(--brand-dk); }
+.ac-caste-chips { display: flex; flex-direction: column; gap: 4px; }
+.acc-chip       { padding: 4px 7px; border-radius: 0 4px 4px 0; background: #F9FAFB; border: 1px solid var(--border); }
+.acc-grp        { font-weight: 800; font-size: 0.68rem; display: block; margin-bottom: 1px; }
+.acc-sub        { font-size: 0.63rem; color: var(--text-soft); line-height: 1.35; }
+
+/* ── Party Badges ───────────────────────────────────────────────────────────── */
+.party-badge { font-size: 0.62rem; font-weight: 800; padding: 2px 5px; border-radius: 4px; text-transform: uppercase; white-space: nowrap; }
+.badge-sm    { font-size: 0.56rem; }
+.badge-bjp { background:#FF9933; color:#fff; }
+.badge-rjd { background:#1A5276; color:#fff; }
+.badge-jdu { background:#007F4E; color:#fff; }
+.badge-ljp { background:#0078D4; color:#fff; }
+.badge-inc { background:#138808; color:#fff; }
+.badge-ham { background:#6D3B8A; color:#fff; }
+.badge-jsp { background:#D97706; color:#fff; }
+.badge-cpi { background:#CC0000; color:#fff; }
+.badge-bsp { background:#1565C0; color:#fff; }
+.badge-aim { background:#006600; color:#fff; }
+.badge-ind { background:#64748B; color:#fff; }
+
+/* ── Slide Footer ───────────────────────────────────────────────────────────── */
+.slide-footer {
+  display: flex; justify-content: space-between;
+  font-size: 0.62rem; color: var(--text-muted);
+  border-top: 1px solid var(--border); padding-top: 6px;
+  margin-top: auto; flex-shrink: 0;
+}
+
+/* ============================================================
+   PRINT — 1 slide per A4 landscape page, no margins wasted
+   ============================================================ */
+@media print {
+  @page {
+    size: A4 landscape;
+    margin: 8mm 10mm;
+  }
+
+  .no-print,
+  .screen-toolbar { display: none !important; }
+
+  body { background: #fff; }
+
+  #ppt-slides-stage {
+    display: block !important;
+    background: none;
+    padding: 0;
+    gap: 0;
+    min-height: unset;
+  }
+
+  .slide {
+    /* Reset screen sizing — let it fill the printed page */
+    width: 100% !important;
+    height: auto !important;
+    min-height: 0 !important;
+    max-height: none !important;
+    box-shadow: none !important;
+    border-radius: 0 !important;
+    border: none !important;
+
+    /* Each slide = 1 page */
+    break-after: page;
+    page-break-after: always;
+
+    /* Tight padding for print */
+    padding: 8mm 10mm 6mm !important;
+    gap: 5mm !important;
+
+    /* Let height be natural for print engine */
+    overflow: visible !important;
+  }
+
+  /* Last slide: no blank trailing page */
+  .slide:last-child {
+    break-after: avoid !important;
+    page-break-after: avoid !important;
+  }
+
+  .slide::before { display: none; }
+
+  /* Tighten typography in print */
+  .slide-h2     { font-size: 1.05rem; }
+  .cover-h1     { font-size: 2rem; }
+  .cover-sub    { font-size: 0.82rem; }
+  .rb-name      { font-size: 0.85rem; }
+  .jsp-name     { font-size: 0.95rem; }
+  .hub-desc     { font-size: 0.68rem; }
+  .bio-list li  { font-size: 0.65rem; }
+  .acc-sub      { font-size: 0.6rem; }
+  .cg-subs      { gap: 2px; }
+  .sub-chip     { font-size: 0.58rem; }
+  .l-name       { font-size: 0.72rem; }
+  .leaders-grid { gap: 4mm; }
+  .hub-grid     { gap: 4mm; }
+  .two-col      { gap: 5mm; }
+  .cover-stats  { gap: 4mm; }
+  .cs-num       { font-size: 1.4rem; }
+}

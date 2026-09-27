@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="hi" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>औरंगाबाद ज़िला (6 ACs) - जन सुराज पार्टी विधानसभा शोकेस एवं जातीय विश्लेषण</title>
+  <meta name="description" content="औरंगाबाद ज़िले के सभी 6 विधानसभा क्षेत्रों (Rafiganj, Goh, Aurangabad, Kutumba, Nabinagar, Obra) का विस्तृत चुनावी शोकेस, प्रत्याशी प्रोफाइल एवं जातीय समीकरण।">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Hind:wght@400;500;600;700&family=Outfit:wght@400;500;600;700;800&family=Rozha+One&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body data-district="aurangabad">
+
+  <!-- Toast Notification Container -->
+  <div id="toast-container" class="toast-container" aria-live="polite"></div>
+
+  <!-- Decorative Glows -->
+  <div class="bg-glow bg-glow-1"></div>
+  <div class="bg-glow bg-glow-2"></div>
+
+  <!-- Site Navigation Header -->
+  <header class="site-header">
+    <div class="header-container">
+      <div class="brand-wrapper">
+        <a href="index.html" class="brand-logo-badge" style="text-decoration: none;">
+          <span class="logo-text-hi">जन सुराज</span>
+          <span class="logo-sub">मगध प्रमंडल</span>
+        </a>
+        <div class="brand-info">
+          <h1 class="brand-title">औरंगाबाद ज़िला <span class="badge-tag" style="background: var(--color-aurangabad-bg); color: var(--color-aurangabad);">6 विधानसभा सीटें</span></h1>
+          <p class="brand-subtitle">विधानसभा परिणाम, जन सुराज प्रत्याशी एवं जातीय समीकरण शोकेस</p>
+        </div>
+      </div>
+
+      <!-- Navigation Tabs -->
+      <nav class="main-nav-links">
+        <a href="index.html" class="nav-tab"><i class="fa-solid fa-house"></i> मगध मुख्य हब</a>
+        <a href="gaya.html" class="nav-tab"><i class="fa-solid fa-tree"></i> गया (10)</a>
+        <a href="aurangabad.html" class="nav-tab active-tab" style="border-color: var(--color-aurangabad); color: var(--color-aurangabad);"><i class="fa-solid fa-landmark"></i> औरंगाबाद (6)</a>
+        <a href="jehanabad.html" class="nav-tab"><i class="fa-solid fa-compass"></i> जहानाबाद (3)</a>
+        <a href="arwal.html" class="nav-tab"><i class="fa-solid fa-mountain-sun"></i> अरवल (2)</a>
+        <a href="index.html#zonal-leadership" class="nav-tab"><i class="fa-solid fa-users-gear"></i> ज़ोनल नेतृत्व</a>
+      </nav>
+
+      <div class="header-actions">
+        <button id="theme-toggle-btn" class="btn btn-outline btn-icon" title="थीम बदलें" aria-label="Toggle Theme">
+          <i class="fa-solid fa-moon"></i>
+        </button>
+        <button id="export-district-csv" class="btn btn-outline" title="औरंगाबाद ज़िले की CSV डाउनलोड करें">
+          <i class="fa-solid fa-file-excel"></i>
+          <span>Excel / CSV</span>
+        </button>
+        <button id="print-district-btn" class="btn btn-primary" title="प्रिंट शोकेस">
+          <i class="fa-solid fa-print"></i>
+          <span>प्रिंट</span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Main Content Container -->
+  <main class="main-content">
+
+    <!-- District Overview Banner -->
+    <section class="hero-banner district-hero">
+      <div class="district-hero-top">
+        <span class="hero-badge"><i class="fa-solid fa-map-pin"></i> मगध प्रमंडल • ज़िला मुख्यालय: औरंगाबाद</span>
+        <h2 id="district-title" class="hero-heading">औरंगाबाद ज़िला (District Aurangabad)</h2>
+        <p id="district-summary-text" class="hero-desc">
+          औरंगाबाद जिले के सभी 6 विधानसभा क्षेत्रों (रफ़ीगंज, गोह, औरंगाबाद, कुटुम्बा, नवीनगर, ओबरा) का विस्तृत चुनावी शोकेस व विश्लेषण।
+        </p>
+      </div>
+
+      <!-- Quick AC Jump Links -->
+      <div class="ac-quick-jump-bar">
+        <span class="jump-label"><i class="fa-solid fa-bolt"></i> 6 विधानसभा क्षेत्रों का त्वरित शोकेस नेविगेशन:</span>
+        <div class="jump-pills">
+          <a href="#ac-rafiganj" class="jump-pill">1. रफ़ीगंज</a>
+          <a href="#ac-goh" class="jump-pill">2. गोह</a>
+          <a href="#ac-aurangabad-ac" class="jump-pill">3. औरंगाबाद</a>
+          <a href="#ac-kutumba-sc" class="jump-pill">4. कुटुम्बा (SC)</a>
+          <a href="#ac-nabinagar" class="jump-pill">5. नवीनगर</a>
+          <a href="#ac-obra" class="jump-pill">6. ओबरा</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Whole District Caste Demographics Showcase Box -->
+    <section id="district-caste-container" class="district-caste-section">
+      <!-- Injected via district-common.js -->
+    </section>
+
+    <div class="section-header" style="text-align: left; margin-bottom: 1.5rem;">
+      <h3 class="section-title" style="justify-content: flex-start;">
+        <i class="fa-solid fa-id-card"></i> औरंगाबाद ज़िला - 6 विधानसभा विस्तृत चुनावी एवं प्रत्याशी शोकेस
+      </h3>
+      <p class="section-subtitle">प्रत्येक विधानसभा के चुनाव परिणाम, जन सुराज प्रत्याशी परिचय एवं जातीय डेटा विवरण</p>
+    </div>
+
+    <!-- Assembly Constituencies Dossiers -->
+    <section id="ac-cards-container" class="ac-cards-stack">
+      <!-- Injected via district-common.js -->
+    </section>
+
+  </main>
+
+  <!-- Footer -->
+  <footer class="site-footer">
+    <div class="footer-container">
+      <div class="footer-brand">
+        <span class="footer-logo">जन सुराज पार्टी - औरंगाबाद ज़िला</span>
+        <span class="footer-slogan">"बिहार की जनता का, जनता द्वारा, जनता के लिए सुराज"</span>
+      </div>
+      <div class="footer-info">
+        <p>औरंगाबाद ज़िला (6 विधानसभा क्षेत्र) अधिकृत शोकेस पोर्टल</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="data.js"></script>
+  <script src="district-common.js"></script>
+</body>
+</html>
